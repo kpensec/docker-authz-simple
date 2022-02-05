@@ -2,20 +2,21 @@ package main
 
 import (
 	"github.com/docker/go-plugins-helpers/authorization"
-	"github.com/sirupsen/logrus"
+	"log"
+	"fmt"
 )
 
 func main() {
-	logrus.Info("Plugin start")
+	fmt.Printf("Starting authorization plugin")
 
 	plugin, err := newPlugin()
 	if err != nil {
-		logrus.Fatal(err)
+		log.Fatal(err)
 	}
 
 	h := authorization.NewHandler(plugin)
 
 	if err := h.ServeUnix("authz-plugin", 0); err != nil {
-		logrus.Fatal(err)
+		log.Fatal(err)
 	}
 }

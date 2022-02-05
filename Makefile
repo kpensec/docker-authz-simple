@@ -1,16 +1,15 @@
 SHELL=/bin/bash -o pipefail
 
-PLUGIN_NAME=leogr/docker-authz-plugin
-PLUGIN_TAG=dev
+PLUGIN_NAME=docker-authz-plugin
+PLUGIN_TAG=0.1
 
 GO ?= go
 DOCKER ?= docker
 
 export GO111MODULE=on
 
-.PHONY: docker-authz-plugin
-docker-authz-plugin:
-	$(GO) build -a -tags netgo -ldflags '-extldflags "-static"' -o $@ .
+.PHONY: all
+all: create install
 
 .PHONY: plugin
 plugin: clean
@@ -33,3 +32,7 @@ install:
 .PHONY: clean
 clean:
 	rm -rf ./plugin
+
+.PHONY: docker-authz-plugin
+docker-authz-plugin:
+	$(GO) build -a -tags netgo -ldflags '-extldflags "-static"' -o $@ .

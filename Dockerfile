@@ -3,7 +3,7 @@ WORKDIR /src
 COPY . .
 RUN make docker-authz-plugin
 
-FROM scratch
+FROM alpine
 COPY --from=builder /src/docker-authz-plugin /bin/docker-authz-plugin
 
 ENTRYPOINT [ "/bin/docker-authz-plugin" ]

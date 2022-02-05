@@ -1,2 +1,5 @@
 /docker-authz-plugin
 /plugin
+/certs
+/tmp
+
